@@ -68,7 +68,7 @@ h1{
     cursor: pointer;
 }
 #guide-icon::before, .guide::before{
-    background-image: url('/Assets/images/question.png');
+    background-image: url(Assets/images/question.png);
 }
 /* End of navigation */
 
@@ -371,7 +371,7 @@ main{
 #clear::before{
     position: absolute;
     right: .8em;
-    background-image: url('/Assets/images/bin.png');
+    background-image: url(Assets/images/bin.png);
     cursor: pointer;
 }
 /* End of history */
@@ -390,7 +390,7 @@ footer{
     right: 1.5rem;
 }
 .history::before ,.h-title::before{
-    background-image: url('/Assets/images/history.png');
+    background-image: url(Assets/images/history.png);
 }
 #nav-icon:active, .nav:active,
 .exit:active, .arrow:active{
