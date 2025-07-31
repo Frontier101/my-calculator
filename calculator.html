@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Calculator</title>
+    <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+    <header class="flex-space">
+        <h1>Online Calculator</h1>
+        <div id="icons">
+            <div id="nav-icon" class="flex-column" title="More options" 
+                aria-label="More options button" role="button"
+                aria-expanded="false" aria-controls="nav">
+                <span class="nv c"></span>
+                <span class="nv c"></span>
+                <span class="nv c"></span>
+            </div>
+            <div class="cb icon history" title="History"
+                aria-label="History icon" role="button"
+                aria-expanded="false" aria-controls="history"></div>
+            <div class="cb icon guide" title="Guide"
+                aria-label="Guide icon" role="button"
+                aria-expanded="false" aria-controls="guide"></div>
+        </div>
+        <div id="nav" class="hidden dialog popup" 
+            data-entrance ='navigate .1s ease-in-out'
+            data-exit = 'fade-out'
+            role="dialog" aria-label="More options pop-up" inert>
+            <div id="history-icon" class="cb history nav" title="History"
+                aria-label="History option" role="button"
+                aria-expanded="false" aria-controls="history">History</div>
+            <hr/>
+            <div id="guide-icon" class ="cb guide nav" title="Guide"
+                aria-label="guide option" role="button"
+                aria-expanded="false" aria-controls="guide">Guide</div>
+        </div>
+        <div id="guide" class="hidden flex-column dialog popup"
+            data-entrance="fade-in .3s ease-in-out" data-exit = 'fade-out'
+            role="dialog" aria-label="Calculator features guide panel" inert>
+            <div id="q-header" class="flex-space">
+                <h2>How To Use</h2>
+                <div class="c exit" title="Exit"
+                    aria-label="close guide" role="button">X</div>
+            </div>
+            <div id="screenshot">
+                <div class="arrow-container">
+                    <div id="left" class="lf arrow" title="Previous"
+                        aria-label="Previous feature" role="button" hidden inert></div>
+                </div>
+                <div><img src="" alt=""></div>
+                <div class="arrow-container">
+                    <div id="right" class="rt arrow"  title="Next" 
+                        aria-label="Next feature" role="button"></div>
+                </div>
+            </div>
+            <div id="description">
+                <h4 id="des-h4"></h4>
+                <p id="des-p" class="scroll"></p>
+            </div>
+            <div role="list" aria-label="feature indicator" id="current-index">
+                <span role="listitem" aria-label="1 of 14" aria-current="true" class="c crt-scr index"></span>
+                <span role="listitem" aria-label="2 of 14" class="c crt-scr"></span>
+                <span role="listitem" aria-label="3 of 14" class="c crt-scr"></span>
+                <span role="listitem" aria-label="4 of 14" class="c crt-scr"></span>
+                <span role="listitem" aria-label="5 of 14" class="c crt-scr"></span>
+                <span role="listitem" aria-label="6 of 14" class="c crt-scr"></span>
+                <span role="listitem" aria-label="7 of 14" class="c crt-scr"></span>
+                <span role="listitem" aria-label="8 of 14" class="c crt-scr"></span>
+                <span role="listitem" aria-label="9 of 14" class="c crt-scr"></span>
+                <span role="listitem" aria-label="10 of 14" class="c crt-scr"></span>
+                <span role="listitem" aria-label="11 of 14" class="c crt-scr"></span>
+                <span role="listitem" aria-label="12 of 14" class="c crt-scr"></span>
+                <span role="listitem" aria-label="13 of 14" class="c crt-scr"></span>
+                <span role="listitem" aria-label="14 of 14" class="c crt-scr"></span>
+            </div>
+        </div>
+    </header>
+    <main class="flex-column grid">
+        <div id="calculator" class="flex-column">
+            <div id="display" class="flex-column">
+                <div id="current-operation" class="display" 
+                    aria-label="Current operation"></div>
+                <div id="result" class="display" aria-label="Operation result"
+                    role="status" aria-live="polite" hidden inert></div>
+            </div>
+            <div id="buttons">
+                <div id="buttons-container" class="buttons-container">
+                    <div class="memory-buttons" role="group" aria-label="memory buttons">
+                        <button type="button" class="memory" id="display-memory" title="Memory (Alt + M)" 
+                            accesskey="M" aria-label="Memory ▼"
+                            aria-expanded="false" aria-controls="current-memory">▼</button>
+                        <button type="button" class="memory" title="Memory Add(Alt + A)" 
+                            accesskey="A" aria-label="MemoryAdd M+">M+</button>
+                        <button type="button" class="memory" title="Memory Subtract(Alt + S)" 
+                            accesskey="S" aria-label="MemorySubtract M-">M-</button>
+                        <button type="button" class="memory" title="Memory Recall(Alt + R)" 
+                            accesskey="R" aria-label="MemoryRecall MR">MR</button>
+                        <button type="button" class="memory" title="Memory Store(Alt + Q)"
+                            accesskey="Q" aria-label="MemoryStore MS"
+                            aria-expanded="false" aria-controls="label-value">MS</button>
+                        <button type="button" class="memory" title="Memory Clear(Alt + C)" 
+                            accesskey="C" aria-label="MemoryClear MC">MC</button>
+                    </div>
+                    <div class="right-buttons" role="group" 
+                        aria-label="Operator and delete buttons">
+                        <button type="button" class="right" title="Delete last entry" 
+                            aria-label="Delete" data-key="Backspace">Delete</button>
+                        <button type="button" class="right symbol" title="Division (/)"
+                            aria-label="Divide ÷" data-key="/">÷</button>
+                        <button type="button" class="right symbol" title="Multiplication (*)"
+                            aria-label="Multiply ×" data-key="*">×</button>
+                        <button type="button" class="right symbol" title="Addition (+)"
+                            aria-label="Plus +" data-key="+">+</button>
+                        <button type="button" class="right symbol" title="Subtraction (-)"
+                            aria-label="Minus -" data-key="-">-</button>
+                        <button type="button" id="equal-sign" class="right symbol" title="Equal (=)"
+                            aria-label="Equal =" data-key="="
+                            aria-expanded="true" aria-controls="clear">=</button>
+                    </div>
+                    <div class="left-buttons" role="group" 
+                        aria-label="Numbers and special functions buttons">
+                        <button type="button" id="√" class="left special" title="sqrt (r)"
+                            aria-label="SquareRoot √x" data-key="r">√x</button>
+                        <button type="button" id="1/" class="left special" title="Inverse (i)" 
+                            aria-label="Inverse 1/x" data-key="i">1/x</button>
+                        <button type="button" class="left special" title="clear All (c)"
+                            aria-label="ClearAll" data-key="c">C</button>
+                        <button type="button" id="%" class="left special" title="percentage (p)"
+                            aria-label="Percentage x%" data-key="p">x%</button>
+                        <button type="button" id="!" class="left special" title="factorial (f)"
+                            aria-label="Factorial x!" data-key="f">x!</button>
+                        <button type="button" id="²" class="left special" title="square (q)"
+                            aria-label="Square x²" data-key="q" >x²</button>
+                        <button type="button" class="left digit" title="7"
+                            aria-label="Num7" data-key="7" >7</button>
+                        <button type="button" class="left digit" title="8"
+                            aria-label="Num8" data-key="8">8</button>
+                        <button type="button" class="left digit" title="9"
+                            aria-label="Num9" data-key="9">9</button>
+                        <button type="button" class="left digit" title="4"
+                            aria-label="Num4" data-key="4">4</button>
+                        <button type="button" class="left digit" title="5"
+                            aria-label="Num5" data-key="5">5</button>
+                        <button type="button" class="left digit" title="6"
+                            aria-label="Num6" data-key="6">6</button>
+                        <button type="button" class="left digit" title="1"
+                            aria-label="Num1" data-key="1">1</button>
+                        <button type="button" class="left digit" title="2"
+                            aria-label="Num2" data-key="2">2</button>
+                        <button type="button" class="left digit" title="3"
+                            aria-label="Num3" data-key="3">3</button>
+                        <button type="button" id="sign" class="left" title="change Sign (x)"
+                            aria-label="ChangeSign +/-" data-key="x" >+/-</button>
+                        <button type="button" class="left digit" title="0" 
+                            aria-label="Num0" data-key="0">0</button>
+                        <button type="button" id="dot" class="left" title="dot (.)"
+                            aria-label="Dot." data-key=".">.</button>
+                    </div>
+                </div>
+            </div>
+            <div id="current-memory" class="hidden" inert>
+                <button type="button" id="exit-to-buttons" class="exit-to-buttons" 
+                    title = "Back to buttons (Alt + Z)" accesskey="Z"
+                    aria-label="Go back from memory section to the Buttons section"
+                    aria-expanded="true" aria-controls="buttons-container">▲</button>
+                <div id="memory-container" class="scroll" aria-label="memory values"
+                    role="list" aria-live="polite" tabindex="0"></div>
+            </div>
+        </div>
+        <div id="label-value" class="label-value hidden flex-column"
+                role="dialog" aria-live="assertive" inert>
+            <form id="label-form" class="flex-column" action="">
+                <label for="stored-value-name">You Can Give This Value A Name : </label>
+                <input id="stored-value-name" class="dialog" 
+                    maxlength="20" aria-labelledby="save-value"
+                    type="text" value="" placeholder="Total"/>
+                <button id="save-value" type="submit" aria-label="save value to memory"
+                    title="Save value" data-key="Enter">Save</button>
+            </form>
+        </div>
+        <div id="history" class="history-section hidden" 
+            data-entrance ='slide-in .3s ease-in-out'
+            data-exit = 'slide-out' inert>
+            <div id="confirmation-container" class="flex-column">
+                <div id="container" class="flex-column hidden dialog"
+                    data-entrance ='slide-up .3s ease-in-out'
+                    data-exit = 'slide-down'
+                    role="dialog" aria-live="assertive" 
+                    aria-label="Clear All History Confirmation" inert>
+                    <div id="message">This action will Delete all history permanently,
+                            <br/> Do You Confirm?</div>
+                    <div id="confirmation" class="flex-space">
+                        <div id="cancel" class="dialog" title="Cancel"
+                            aria-label="Cancel Clear All History" role="button">Cancel</div>
+                        <div id="confirm" class="dialog" title="Confirm"
+                            aria-label="Confirm Clear All History" role="button"
+                            aria-expanded="false" aria-controls="no-history">Confirm</div>
+                    </div>
+                </div>
+            </div>
+            <div id="history-top" class="flex-space">
+                <h3 class="cb h-title">History</h3>
+                <div class="c exit" title="Exit" 
+                    aria-label="close history panel" role="button" >X</div>
+            </div>
+            <div id="no-history" class="flex-column hidden"
+                role="status" aria-live="polite" aria-label="No History" inert>
+                <em>No History.</em>
+            </div>
+            <div id="history-log" class="scroll" tabindex="0"
+                role="list" aria-live="polite" aria-label="history operations log">
+            </div>
+            <div id="clear" class="cb" title="Clear All"
+                aria-label="Clear All History" role="button" 
+                aria-expanded="false" aria-controls="container"></div>
+        </div>
+    </main>
+    <footer>
+        <p>Designed and built by <strong><a rel="noopener" href="https://github.com/Frontier101" target="_blank">Frontier101</a></strong></p>
+        <p>&copy; 2025 Frontier101. All rights reserved.</p>
+    </footer>
+    <script type="module" src="script.js"></script>
+</body>
+</html>
