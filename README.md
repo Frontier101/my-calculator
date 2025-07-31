@@ -18,7 +18,7 @@ A simple and responsive calculator built using HTML, CSS, and JavaScript. Design
 
 ## Screenshot
 
-![Calculator Screenshot]([https://raw.githubusercontent.com/Frontier101/screenshots/refs/heads/main/Calculator%20Screenshot.png?token=GHSAT0AAAAAADIB7CHFI2JEMSATK66T3X2G2EFCAPA](https://github.com/Frontier101/screenshots/blob/main/Calculator%20Screenshot.png?raw=true))
+![Calculator Screenshot](https://raw.githubusercontent.com/Frontier101/screenshots/refs/heads/main/Calculator%20Screenshot.png)
 
 ##  Project Structure
 
